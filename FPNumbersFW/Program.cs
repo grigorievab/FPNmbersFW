@@ -337,27 +337,5 @@ namespace FPNumbers
 
         [DllImport("msvcrt.dll", CallingConvention = CallingConvention.Cdecl)]
         public static extern int _controlfp(int newControl, int mask);
-
-        private static int FloatToInt(float f)
-        {
-            byte[] buf = new byte[4];
-            System.IO.MemoryStream ms = new System.IO.MemoryStream(buf);
-            System.IO.BinaryWriter w = new System.IO.BinaryWriter(ms);
-            w.Write(f);
-            System.IO.BinaryReader r = new System.IO.BinaryReader(ms);
-            ms.Position = 0;
-            return r.ReadInt32();
-        }
-
-        private static long DoubleToLong(double f)
-        {
-            byte[] buf = new byte[8];
-            System.IO.MemoryStream ms = new System.IO.MemoryStream(buf);
-            System.IO.BinaryWriter w = new System.IO.BinaryWriter(ms);
-            w.Write(f);
-            System.IO.BinaryReader r = new System.IO.BinaryReader(ms);
-            ms.Position = 0;
-            return r.ReadInt64();
-        }
     }
 }
